@@ -6,13 +6,16 @@
  * @flow strict-local
  */
 
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import {Formik} from 'formik';
 import globalStyles from '../globalstyles/globalStyles';
 import axios from 'axios';
+import {AuthContext} from '../components/context/Context'
 
 const Login = ({navigation}) => {
+  const {logIn} = useContext(AuthContext)
+
   return (
     <View style={globalStyles.container}>
       <Formik
@@ -22,6 +25,7 @@ const Login = ({navigation}) => {
           //   // handle success
           //   console.log(response);
           // });
+          logIn(values.email,values.password)
           console.log(values);
         }}>
         {(props) => (

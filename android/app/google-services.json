@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "382727327493",
+    "firebase_url": "https://ratar-auth.firebaseio.com",
+    "project_id": "ratar-auth",
+    "storage_bucket": "ratar-auth.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:382727327493:android:aa177eb323a110d58bb16c",
+        "android_client_info": {
+          "package_name": "com.ratar"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "382727327493-rv98ikve0cp6hno78gjsk3us7nf4m24a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBY0XMWciz8_g92eXipUHqvio1ooD0bGiM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "382727327493-rv98ikve0cp6hno78gjsk3us7nf4m24a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
