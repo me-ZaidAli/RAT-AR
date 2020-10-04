@@ -6,18 +6,19 @@
  * @flow strict-local
  */
 
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity, Switch} from 'react-native';
 import {Formik} from 'formik';
 import globalStyles from '../globalstyles/globalStyles';
-import axios from 'axios';
 import signupSchema from './yup_schema/schemas';
+import {AuthContext} from './context/AuthContext'
 
-import {Header} from 'react-native/Libraries/NewAppScreen';
 
 const Signup = ({navigation}) => {
+  const {signUp} = useContext(AuthContext)
+
   const confirmPassword = (password, cpassword) => {
-    return password.locaCompare(cpassword) ? true : false;
+    return password.localCompare(cpassword) ? true : false;
   };
 
   return (
@@ -30,6 +31,7 @@ const Signup = ({navigation}) => {
           //   // handle success
           //   console.log(response);
           // });
+          signUp(values.email,values.password)
           console.log(values);
         }}>
         {(props) => (

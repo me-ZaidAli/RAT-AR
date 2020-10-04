@@ -10,22 +10,18 @@ import React, {useContext, useState} from 'react';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import {Formik} from 'formik';
 import globalStyles from '../globalstyles/globalStyles';
-import axios from 'axios';
-import {AuthContext} from '../components/context/Context'
+import {AuthContext} from './context/AuthContext';
 
 const Login = ({navigation}) => {
-  const {logIn} = useContext(AuthContext)
+  const {logIn} = useContext(AuthContext);
+  // const loginFailedError
 
   return (
     <View style={globalStyles.container}>
       <Formik
         initialValues={{email: '', password: ''}}
         onSubmit={(values) => {
-          // axios.get('http://192.168.10.5:3000/').then(function (response) {
-          //   // handle success
-          //   console.log(response);
-          // });
-          logIn(values.email,values.password)
+          logIn(values.email, values.password);
           console.log(values);
         }}>
         {(props) => (
