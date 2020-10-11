@@ -7,33 +7,119 @@
  */
 import 'react-native-gesture-handler';
 import React, {useEffect, useState} from 'react';
+
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
+import Icon from 'react-native-vector-icons/FontAwesome';
+
 import Signup from './components/SignupForm';
 import Login from './components/LoginForm';
 import HomePage from './components/HomePage';
+import MenuDrawer from './components/MenuDrawer'
+import Screen1 from './components/drawer/Screen1';
+import Screen2 from './components/drawer/Screen2';
+import Screen3 from './components/drawer/Screen3';
+import Tab1 from './components/tabs/Tab1';
+import Tab2 from './components/tabs/Tab2';
+import Tab3 from './components/tabs/Tab3';
+
 import {ActivityIndicator, View} from 'react-native';
+import globalStyles from './globalstyles/globalStyles'
+
 import auth from '@react-native-firebase/auth';
 import AuthContextProvider from './components/context/AuthContext';
+// import { Header } from 'react-native/Libraries/NewAppScreen';
 
 const App = () => {
   const Stack = createStackNavigator();
+  const Drawer = createDrawerNavigator();
+  const MateriaTopTabs = createMaterialTopTabNavigator();
+  const MaterialBottomTabs = createMaterialBottomTabNavigator();
 
   // Set an initializing state whilst Firebase connects
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState();
-
-  useEffect(() => {
-    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
-    console.log(user);
-    return subscriber;
-  }, []);
 
   // Handle user state changes
   function onAuthStateChanged(user) {
     setUser(user);
     if (initializing) setInitializing(false);
   }
+
+  // function createHomeStack() {
+  //   return (
+  //     <Stack.Navigator>
+  //       <Stack.Screen
+  //         name="Home"
+  //         component={HomePage}
+  //         options={{
+  //           title: 'Home',
+  //         }}
+  //       />
+  //       <Stack.Screen name="Top Tabs" children={createTopTabs} />
+  //     </Stack.Navigator>
+  //   );
+  // }
+
+  // function createTopTabs() {
+  //   return (
+  //     <MateriaTopTabs.Navigator>
+  //         <MateriaTopTabs.Screen name='Tab1' component={Tab1}></MateriaTopTabs.Screen>
+  //         <MateriaTopTabs.Screen name='Tab2' component={Tab2}></MateriaTopTabs.Screen>
+  //         <MateriaTopTabs.Screen name='Tab3' component={Tab3}></MateriaTopTabs.Screen>
+  //     </MateriaTopTabs.Navigator>
+  //   )
+  // }
+
+  function createBottomTabs() {
+    return (
+      <MaterialBottomTabs.Navigator
+        initialRouteName="Home"
+        activeColor="#39b581"
+        inactiveColor="#36393f"
+        barStyle={{backgroundColor: '#1e222b', elevation: 10}}>
+        <MaterialBottomTabs.Screen
+          name="Home"
+          component={HomePage}
+          options={{
+            tabBarLabel: 'Home',
+            tabBarIcon: ({color, focused}) => (
+              <Icon name="home" color={color} size={22} />
+            ),
+          }}
+        />
+        {/* <MaterialBottomTabs.Screen
+          name="Settings"
+          component={Tab2}
+          options={{
+            tabBarLabel: 'Settings',
+            tabBarIcon: ({color, focused}) => (
+              <Icon name="cogs" color={color} size={22} />
+            ),
+          }}
+        /> */}
+        <MaterialBottomTabs.Screen
+          name="Profile"
+          component={Tab3}
+          options={{
+            tabBarLabel: 'Profile',
+            tabBarIcon: ({color, focused}) => (
+              <Icon name="user" color={color} size={22} />
+            ),
+          }}
+        />
+      </MaterialBottomTabs.Navigator>
+    );
+  }
+
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
+    console.log(user);
+    return subscriber;
+  }, []);
 
   if (initializing) {
     return (
@@ -52,7 +138,28 @@ const App = () => {
             <Stack.Screen name="Login" component={Login} />
           </Stack.Navigator>
         ) : (
-          <HomePage></HomePage>
+          // <Drawer.Navigator>
+          //   <Drawer.Screen
+          //     name="Home"
+          //     children={createHomeStack}></Drawer.Screen>
+          //   <Drawer.Screen name="Screen1" component={Screen1}></Drawer.Screen>
+          //   <Drawer.Screen name="Screen2" component={Screen2}></Drawer.Screen>
+          //   <Drawer.Screen name="Screen3" component={Screen3}></Drawer.Screen>
+          // </Drawer.Navigator>
+          // createHomeStack()
+
+          <Stack.Navigator screenOptions={{headerShown: true}}>
+            <Stack.Screen
+              name="Home"
+              component={createBottomTabs}
+              options={{
+                headerLeft: () => (<MenuDrawer></MenuDrawer>),
+                headerTintColor:"#ffffff",
+                headerStyle:{backgroundColor:"#1e222b"}
+              }}
+            />
+            {/* <Stack.Screen name="Login" component={Login} /> */}
+          </Stack.Navigator>
         )}
       </NavigationContainer>
     </AuthContextProvider>

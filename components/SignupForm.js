@@ -11,11 +11,10 @@ import {View, Text, TextInput, TouchableOpacity, Switch} from 'react-native';
 import {Formik} from 'formik';
 import globalStyles from '../globalstyles/globalStyles';
 import signupSchema from './yup_schema/schemas';
-import {AuthContext} from './context/AuthContext'
-
+import {AuthContext} from './context/AuthContext';
 
 const Signup = ({navigation}) => {
-  const {signUp} = useContext(AuthContext)
+  const {signUp} = useContext(AuthContext);
 
   const confirmPassword = (password, cpassword) => {
     return password.localCompare(cpassword) ? true : false;
@@ -27,11 +26,7 @@ const Signup = ({navigation}) => {
         initialValues={{username: '', email: '', password: '', cpassword: ''}}
         validationSchema={signupSchema}
         onSubmit={(values) => {
-          // axios.get('http://192.168.10.5:3000/').then(function (response) {
-          //   // handle success
-          //   console.log(response);
-          // });
-          signUp(values.email,values.password)
+          signUp(values.email, values.password);
           console.log(values);
         }}>
         {(props) => (

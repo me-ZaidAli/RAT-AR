@@ -66,6 +66,11 @@ const globalStyles = StyleSheet.create({
     alignSelf: 'center',
     textTransform: 'uppercase',
   },
+  menuDrawer:{
+    opacity:1,
+    marginHorizontal:8,
+    color:"#ffffff"
+  },
   errorText: {
     color: '#FF0000',
     marginTop: 0,

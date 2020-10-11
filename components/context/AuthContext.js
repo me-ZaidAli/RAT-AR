@@ -11,7 +11,7 @@ const AuthContextProvider = (props) => {
           .signInWithEmailAndPassword(email, password)
           .then((userCredentials) => {
             console.log('User Logged In!');
-            setUser(userCredentials);
+            // setUser(userCredentials);
           })
           .catch((error) => {
             console.log(error);
@@ -50,4 +50,4 @@ const AuthContextProvider = (props) => {
     <AuthContext.Provider value={state}>{props.children}</AuthContext.Provider>
   );
 };
-export default AuthContextProvider
+export default AuthContextProvider;
