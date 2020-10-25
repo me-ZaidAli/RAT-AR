@@ -5,7 +5,7 @@ const globalStyles = StyleSheet.create({
     padding: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#36393f',
+    backgroundColor: '#131C21',
     height: '100%',
     width: '100%',
   },
@@ -16,6 +16,24 @@ const globalStyles = StyleSheet.create({
     width: 300,
     alignItems: 'flex-start',
     justifyContent: 'center',
+  },
+  homeScreenContainer:{
+    flex:1,
+    flexDirection:'column-reverse',
+    backgroundColor:"#131C21",
+    height:200,
+    width:200
+  },
+  addProblemButton:{
+    elevation: 4,
+    backgroundColor: '#009688',
+    borderRadius: 90,
+    paddingVertical: 21,
+    paddingHorizontal: 22,
+    // width:300
+    width: 60,
+    height:60,
+    alignSelf:"center"
   },
   formTitle: {
     fontSize: 32,
@@ -68,7 +86,7 @@ const globalStyles = StyleSheet.create({
   },
   menuDrawer:{
     opacity:1,
-    marginHorizontal:8,
+    marginHorizontal:10,
     color:"#ffffff"
   },
   errorText: {
