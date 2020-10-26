@@ -5,26 +5,25 @@ const globalStyles = StyleSheet.create({
     padding: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#131C21',
+    // backgroundColor: '#131C21',
     height: '100%',
     width: '100%',
   },
   formContainer: {
     flexDirection: 'column',
     //   padding:10,
-    height: 300,
+    // height: 300,
     width: 300,
     alignItems: 'flex-start',
     justifyContent: 'center',
   },
-  homeScreenContainer:{
-    flex:1,
-    flexDirection:'column-reverse',
-    backgroundColor:"#131C21",
-    height:200,
-    width:200
+  homeScreenContainer: {
+    flex: 1,
+    flexDirection: 'column-reverse',
+    // backgroundColor: '#131C21',
+    
   },
-  addProblemButton:{
+  addProblemButton: {
     elevation: 4,
     backgroundColor: '#009688',
     borderRadius: 90,
@@ -32,62 +31,61 @@ const globalStyles = StyleSheet.create({
     paddingHorizontal: 22,
     // width:300
     width: 60,
-    height:60,
-    alignSelf:"center"
+    height: 60,
+    alignSelf: 'center',
   },
   formTitle: {
     fontSize: 32,
-    color: '#ffffff',
+    // color: '#ffffff',
     marginBottom: 20,
     textTransform: 'uppercase',
   },
   input: {
-    // marginBottom: 10,
+    marginBottom: 5,
     borderRadius: 5,
-    backgroundColor: '#ffffff',
+    // backgroundColor: '#ffffff',
     width: '100%',
   },
   signupButton: {
     elevation: 4,
-    backgroundColor: '#009688',
+    // backgroundColor: '#009688',
     borderRadius: 10,
     paddingVertical: 10,
     paddingHorizontal: 12,
-    // width:300
+    marginTop: 10,
+    marginBottom: 10,
     width: '100%',
     alignItems: 'flex-start',
   },
   loginButton: {
-    marginTop:15,
+    marginTop: 3,
     elevation: 4,
-    // backgroundColor: '#',
     borderRadius: 10,
-    borderWidth:2,
-    borderColor:'#009688',
+    marginBottom: 10,
+    borderWidth: 2,
     paddingVertical: 10,
     paddingHorizontal: 12,
-    // width:300
     width: '100%',
     alignItems: 'flex-start',
   },
   signupButtonText: {
     fontSize: 18,
-    color: '#ffffff',
+    // color: '#ffffff',
     fontWeight: 'bold',
     alignSelf: 'center',
     textTransform: 'uppercase',
   },
   loginButtonText: {
     fontSize: 18,
-    color: '#009688',
+    // color: '#009688',
     fontWeight: 'bold',
     alignSelf: 'center',
     textTransform: 'uppercase',
   },
-  menuDrawer:{
-    opacity:1,
-    marginHorizontal:10,
-    color:"#ffffff"
+  menuDrawer: {
+    opacity: 1,
+    marginHorizontal: 10,
+    color: '#ffffff',
   },
   errorText: {
     color: '#FF0000',
