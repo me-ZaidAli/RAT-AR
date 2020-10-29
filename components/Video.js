@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {Button, Icon} from '@ui-kitten/components';
 import {Platform, ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import RtcEngine, {
   RtcLocalView,
@@ -8,11 +9,14 @@ import RtcEngine, {
 
 import requestCameraAndAudioPermission from './Permission';
 import styles from '../globalstyles/Style';
+import globalStyles from '../globalstyles/globalStyles'
 
-const Video = (props) => {
+const PhoneOffOutline = (props) => <Icon {...props} name="phone-off"></Icon>;
+
+const Video = ({navigation}) => {
   const [appId, setAppId] = useState('6fbc95615707434392c85cff827b9d54');
   const [token, setToken] = useState(
-    '0066fbc95615707434392c85cff827b9d54IABnhiu2KaCuMg8q9RFfnSVc/G4JCSh+36F8zF4zaC3VwwJkFYoAAAAAEAA222oFKp+WXwEAAQAqn5Zf',
+    '0066fbc95615707434392c85cff827b9d54IAAS3RQ3SDWH1G8z1dxEMWR4Sg6iG/wGehWhkWdaj46UgwJkFYoAAAAAEADJ+bHOhQObXwEAAQCEA5tf',
   );
   const [channelName, setChannelName] = useState('channel-x');
   const [joinSucceed, setJoinSucceed] = useState(false);
@@ -70,10 +74,13 @@ const Video = (props) => {
       setJoinSucceed(true);
     });
 
-    setEngine(engine)
-  };
+    setEngine(engine);
 
-  const startCall = async () => {
+    startCall(engine)
+
+};
+
+  const startCall = async (engine) => {
     await engine.joinChannel(token, channelName, null, 0);
   };
 
@@ -81,9 +88,10 @@ const Video = (props) => {
     await engine.leaveChannel();
     setPeerIds([]);
     setJoinSucceed(false);
+    navigation.navigate('Home')
   };
 
-  renderRemoteVideos = () => {
+  const renderRemoteVideos = () => {
     return (
       <ScrollView
         style={styles.remoteContainer}
@@ -104,7 +112,7 @@ const Video = (props) => {
     );
   };
 
-  renderVideos = () => {
+  const renderVideos = () => {
     return joinSucceed ? (
       <View style={styles.fullView}>
         <RtcLocalView.SurfaceView
@@ -112,6 +120,13 @@ const Video = (props) => {
           channelId={channelName}
           renderMode={VideoRenderMode.Hidden}
         />
+        <View style={styles.customButtonHolder}>
+          <Button
+            onPress={endCall}
+            style={globalStyles.hangUpButton}
+            size="large"
+            accessoryRight={PhoneOffOutline}></Button>
+        </View>
         {renderRemoteVideos()}
       </View>
     ) : null;
@@ -121,13 +136,14 @@ const Video = (props) => {
     <View style={styles.max}>
       <View style={styles.max}>
         <View style={styles.buttonHolder}>
-          <TouchableOpacity onPress={startCall} style={styles.button}>
+          {/* <TouchableOpacity onPress={startCall} style={styles.button}>
             <Text style={styles.buttonText}> Start Call </Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={endCall} style={styles.button}>
+          </TouchableOpacity> */}
+          {/* <TouchableOpacity onPress={endCall} style={styles.button}>
             <Text style={styles.buttonText}> End Call </Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
+
         {renderVideos()}
       </View>
     </View>

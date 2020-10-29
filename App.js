@@ -14,8 +14,12 @@ import {
   BottomNavigation,
   BottomNavigationTab,
   Icon,
+  Drawer,
+  DrawerItem,
+  IndexPath,
 } from '@ui-kitten/components';
 import {EvaIconsPack} from '@ui-kitten/eva-icons';
+import {default as theme} from './custom-theme.json';
 
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -26,7 +30,7 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 
 import Signup from './components/SignupForm';
 import Login from './components/LoginForm';
-import HomePage from './components/HomePage';
+// import HomePage from './components/HomePage';
 import MenuDrawer from './components/MenuDrawer';
 import Video from './components/Video';
 
@@ -46,7 +50,7 @@ const PersonIcon = (props) => <Icon name="person-outline" {...props}></Icon>;
 
 const App = () => {
   const Stack = createStackNavigator();
-  const Drawer = createDrawerNavigator();
+  const MenuDrawer = createDrawerNavigator();
   const MateriaTopTabs = createMaterialTopTabNavigator();
   const bottomTabs = createBottomTabNavigator();
 
@@ -60,30 +64,30 @@ const App = () => {
     if (initializing) setInitializing(false);
   }
 
-  // function createHomeStack() {
-  //   return (
-  //     <Stack.Navigator>
-  //       <Stack.Screen
-  //         name="Home"
-  //         component={HomePage}
-  //         options={{
-  //           title: 'Home',
-  //         }}
-  //       />
-  //       <Stack.Screen name="Top Tabs" children={createTopTabs} />
-  //     </Stack.Navigator>
-  //   );
-  // }
+  const DrawerContent = ({navigation, state}) => (
+    <Drawer
+      selectedIndex={new IndexPath(state.index)}
+      onSelect={(index) => navigation.navigate(state.routeNames[index.row])}>
+      <DrawerItem title="Home" />
+      <DrawerItem title="Profile" />
+    </Drawer>
+  );
+  const createHomeStack = () => (
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="Home" component={createBottomTabs} />
+      {/* <Stack.Screen name="Login" component={Login} /> */}
+      <Stack.Screen name="Video" component={Video} />
+    </Stack.Navigator>
+  );
+  const createDrawer = () => (
+    <MenuDrawer.Navigator
+      drawerContent={(props) => <DrawerContent {...props} />}>
+      <MenuDrawer.Screen name="Home" component={createHomeStack} />
+      {/* <Drawer.Screen name="Profile" />
+      <Drawer.Screen /> */}
+    </MenuDrawer.Navigator>
+  );
 
-  // function createTopTabs() {
-  //   return (
-  //     <MateriaTopTabs.Navigator>
-  //         <MateriaTopTabs.Screen name='Tab1' component={Tab1}></MateriaTopTabs.Screen>
-  //         <MateriaTopTabs.Screen name='Tab2' component={Tab2}></MateriaTopTabs.Screen>
-  //         <MateriaTopTabs.Screen name='Tab3' component={Tab3}></MateriaTopTabs.Screen>
-  //     </MateriaTopTabs.Navigator>
-  //   )
-  // }
   const BottomTabBar = ({navigation, state}) => (
     <BottomNavigation
       selectedIndex={state.index}
@@ -94,33 +98,6 @@ const App = () => {
   );
   function createBottomTabs() {
     return (
-      // <MaterialBottomTabs.Navigator
-      //   initialRouteName="Home"
-      //   activeColor="#009688"
-      //   inactiveColor="#131C21"
-      //   barStyle={{backgroundColor: '#262D31', elevation: 10}}>
-      //   <MaterialBottomTabs.Screen
-      //     name="Home"
-      //     component={HomeScreen}
-      //     options={{
-      //       tabBarLabel: 'Home',
-      //       tabBarIcon: ({color, focused}) => (
-      //         <Icon name="home" color={color} size={22} />
-      //       ),
-      //     }}
-      //   />
-
-      //   <MaterialBottomTabs.Screen
-      //     name="Profile"
-      //     component={Tab3}
-      //     options={{
-      //       tabBarLabel: 'Profile',
-      //       tabBarIcon: ({color, focused}) => (
-      //         <Icon name="user" color={color} size={22} />
-      //       ),
-      //     }}
-      //   />
-      // </MaterialBottomTabs.Navigator>
       <bottomTabs.Navigator tabBar={(props) => <BottomTabBar {...props} />}>
         <bottomTabs.Screen name="Home" component={HomeScreen} />
         <bottomTabs.Screen name="Profile" component={Tab2} />
@@ -145,7 +122,7 @@ const App = () => {
   return (
     <>
       <IconRegistry icons={EvaIconsPack} />
-      <ApplicationProvider {...eva} theme={eva.dark}>
+      <ApplicationProvider {...eva} theme={{...eva.dark, ...theme}}>
         <AuthContextProvider>
           <NavigationContainer>
             {!user ? (
@@ -163,11 +140,7 @@ const App = () => {
               //   <Drawer.Screen name="Screen3" component={Screen3}></Drawer.Screen>
               // </Drawer.Navigator>
               // createHomeStack()
-
-              <Stack.Navigator screenOptions={{headerShown: false}}>
-                <Stack.Screen name="Home" component={createBottomTabs} />
-                {/* <Stack.Screen name="Login" component={Login} /> */}
-              </Stack.Navigator>
+              createDrawer()
             )}
           </NavigationContainer>
         </AuthContextProvider>

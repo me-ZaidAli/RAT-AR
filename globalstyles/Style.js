@@ -10,13 +10,30 @@ export default StyleSheet.create({
         flex: 1,
     },
     buttonHolder: {
+        // position:'absolute',
         height: 100,
-        alignItems: 'center',
+        alignItems: 'flex-start',
         flex: 1,
         flexDirection: 'row',
         justifyContent: 'space-evenly',
     },
+    customButtonHolder:{
+        width: dimensions.width,
+        height: dimensions.height - 100,
+        position:'absolute',
+        flex:1,
+        alignItems:'center',
+        justifyContent:'flex-end'
+    },
+    customButton:{
+        position:'relative',
+        paddingHorizontal: 20,
+        paddingVertical: 10,
+        backgroundColor: '#0093E9',
+        borderRadius: 25,
+    },
     button: {
+        // position:'absolute',
         paddingHorizontal: 20,
         paddingVertical: 10,
         backgroundColor: '#0093E9',

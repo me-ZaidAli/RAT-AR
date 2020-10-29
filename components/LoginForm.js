@@ -73,6 +73,7 @@ const Login = ({navigation}) => {
             </TouchableOpacity> */}
             <Button
               style={globalStyles.signupButton}
+              status='primary'
               onPress={props.handleSubmit}>
               <Text style={globalStyles.signupButtonText}>Login</Text>
             </Button>

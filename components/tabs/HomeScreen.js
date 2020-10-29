@@ -7,41 +7,63 @@
  */
 
 import React, {useContext} from 'react';
-import {SafeAreaView} from 'react-native';
+import {SafeAreaView, TouchableOpacity} from 'react-native';
 // import Icon from 'react-native-vector-icons/FontAwesome';
-import {Layout, TopNavigation,Divider,Icon, TopNavigationAction} from '@ui-kitten/components';
+import {
+  Layout,
+  TopNavigation,
+  Divider,
+  Icon,
+  TopNavigationAction,
+} from '@ui-kitten/components';
 
 import globalStyles from '../../globalstyles/globalStyles';
-import {AuthContext} from '../context/AuthContext';
 
-const LogoutIcon = (props)=>(<Icon {...props} name='log-out-outline' ></Icon>)
- 
+import {AuthContext} from '../context/AuthContext';
+import CreateChannel from '../HomeStack/CreateChannel';
+import {Button} from 'react-native-paper';
+
+const LogoutIcon = (props) => <Icon {...props} name="log-out-outline"></Icon>;
+const MenuIcon = (props) => <Icon {...props} name="menu-outline"></Icon>;
 
 const HomePage = ({navigation}) => {
   const {signOut} = useContext(AuthContext);
   // const loginFailedError
+  console.log(navigation)
 
   return (
     // <View style={globalStyles.container}>
     //   <View style={globalStyles.homeScreenContainer}>
-    //     <TouchableOpacity
-    //       style={globalStyles.addProblemButton}
-    //       // onPress={props.handleSubmit}
-    //       >
-    //      <Icon name="plus" size={20} color="#ffffff"></Icon>
-    //     </TouchableOpacity>
+
     //   </View>
     // </View>
-    <SafeAreaView style={{flex:1}}>
-      <TopNavigation alignment="center" title='Home' accessoryRight={()=>(
-        <TopNavigationAction icon={LogoutIcon} onPress={signOut}></TopNavigationAction>
-      )} ></TopNavigation>
-      <Divider/>
-      <Layout style={globalStyles.homeScreenContainer}></Layout>
-      <Divider/>
+    <SafeAreaView style={{flex: 1}}>
+      <TopNavigation
+        alignment="center"
+        title="Home"
+        accessoryRight={() => (
+          <TopNavigationAction
+            icon={LogoutIcon}
+            onPress={signOut}></TopNavigationAction>
+        )}
+        accessoryLeft={() => (
+          <TopNavigationAction
+            icon={MenuIcon}
+            onPress={navigation.openDrawer()}
+            ></TopNavigationAction>
+        )}></TopNavigation>
+      <Divider />
+      {/* <Layout style={globalStyles.homeScreenContainer}></Layout> */}
+      <CreateChannel navigation={navigation}></CreateChannel>
+      {/* <TouchableOpacity
+          style={globalStyles.addProblemButton}
+          // onPress={props.handleSubmit}
+          >
+         {PhoneOffOutline}
+        </TouchableOpacity> */}
 
+      <Divider />
     </SafeAreaView>
-    
   );
 };
 

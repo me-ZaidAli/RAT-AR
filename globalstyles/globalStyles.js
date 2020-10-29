@@ -1,4 +1,9 @@
-import {StyleSheet} from 'react-native';
+import {Dimensions, StyleSheet} from 'react-native'
+
+const dimensions = {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+}
 
 const globalStyles = StyleSheet.create({
   container: {
@@ -7,6 +12,14 @@ const globalStyles = StyleSheet.create({
     justifyContent: 'center',
     // backgroundColor: '#131C21',
     height: '100%',
+    width: '100%',
+  },
+  homeContainer:{
+    padding: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    // backgroundColor: '#131C21',
+    height: '92%',
     width: '100%',
   },
   formContainer: {
@@ -19,19 +32,38 @@ const globalStyles = StyleSheet.create({
   },
   homeScreenContainer: {
     flex: 1,
-    flexDirection: 'column-reverse',
-    // backgroundColor: '#131C21',
+    width: '90%',
+    // height: '100%',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    paddingVertical: 10,
+  },
+  
+  videoContainer:{
     
   },
-  addProblemButton: {
+  hangUpButton: {
     elevation: 4,
-    backgroundColor: '#009688',
+    backgroundColor:'#FF0000',
     borderRadius: 90,
     paddingVertical: 21,
     paddingHorizontal: 22,
+    borderColor:"#FF0000",
     // width:300
     width: 60,
     height: 60,
+    alignSelf: 'center',
+  },
+  joinButton:{
+    elevation: 4,
+    // backgroundColor:'#FF0000',
+    borderRadius: 90,
+    paddingVertical: 21,
+    paddingHorizontal: 22,
+    
+    // width:300
+    width: 50,
+    height: 50,
     alignSelf: 'center',
   },
   formTitle: {
@@ -70,7 +102,7 @@ const globalStyles = StyleSheet.create({
   },
   signupButtonText: {
     fontSize: 18,
-    // color: '#ffffff',
+    color: '#ffffff',
     fontWeight: 'bold',
     alignSelf: 'center',
     textTransform: 'uppercase',
