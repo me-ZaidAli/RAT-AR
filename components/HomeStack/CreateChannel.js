@@ -8,7 +8,7 @@
 
 import React, {useContext, useState} from 'react';
 // import {View, TextInput, TouchableOpacity} from 'react-native';
-// import {Formik} from 'formik';
+import {Formik} from 'formik';
 import globalStyles from '../../globalstyles/globalStyles';
 
 import {
@@ -18,6 +18,8 @@ import {
   Button,
   Icon,
   Divider,
+  TopNavigation,
+  TopNavigationAction
 } from '@ui-kitten/components';
 import {Directions} from 'react-native-gesture-handler';
 import {View} from 'native-base';
@@ -26,12 +28,13 @@ const ForwardIcon = (props) => (
   <Icon name="arrow-forward-outline" {...props}></Icon>
 );
 
-const JoinIcon = (props) => (
-  <Icon name="link-outline" {...props}></Icon>
-);
+const JoinIcon = (props) => <Icon name="link-outline" {...props}></Icon>;
 
 const CreateChannel = (props) => {
+
+
   return (
+    
     <Layout style={globalStyles.homeContainer} level="1">
       <Layout style={globalStyles.homeScreenContainer} level="1">
         <Text
@@ -64,10 +67,32 @@ const CreateChannel = (props) => {
           category="h5">
           Join!
         </Text>
-        <View style={{ flexDirection: 'row', justifyContent:'space-between',width: '100%'}}>
-          <Input placeholder="Channel Id" size='large' style={{width:'80%',margin:2}}></Input>
-          <Button size="large" appearance="ghost" accessoryLeft={ForwardIcon}></Button>
-        </View>
+
+        <Formik initialValues={{channelId: ''}} onSubmit={(values) => {
+          props.navigation.navigate('Video',{channelId:values.channelId})
+        }}>
+          {(props) => (
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                width: '100%',
+              }}>
+              <Input
+                placeholder="Channel Id"
+                size="large"
+                onChangeText={props.handleChange('channelId')}
+                value={props.values.channelId}
+                style={{width: '80%', margin: 2}}></Input>
+              <Button
+                size="large"
+                appearance="ghost"
+                onPress={props.handleSubmit}
+                accessoryLeft={ForwardIcon}></Button>
+            </View>
+          )}
+        </Formik>
+
         {/* <Input status></Input>
         <Layout level='3' style={{height:'20%',width:'20%',flex: 1, flexDirection: 'row'}}>
 

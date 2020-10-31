@@ -1,9 +1,9 @@
-import {Dimensions, StyleSheet} from 'react-native'
+import {Dimensions, StyleSheet} from 'react-native';
 
 const dimensions = {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
-}
+  width: Dimensions.get('window').width,
+  height: Dimensions.get('window').height,
+};
 
 const globalStyles = StyleSheet.create({
   container: {
@@ -14,7 +14,14 @@ const globalStyles = StyleSheet.create({
     height: '100%',
     width: '100%',
   },
-  homeContainer:{
+  videoLoadContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    // backgroundColor: '#131C21',
+    height: '100%',
+    width: '100%',
+  },
+  homeContainer: {
     padding: 10,
     alignItems: 'center',
     justifyContent: 'center',
@@ -38,29 +45,27 @@ const globalStyles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical: 10,
   },
-  
-  videoContainer:{
-    
-  },
+
+  videoContainer: {},
   hangUpButton: {
     elevation: 4,
-    backgroundColor:'#FF0000',
+    backgroundColor: '#FF0000',
     borderRadius: 90,
     paddingVertical: 21,
     paddingHorizontal: 22,
-    borderColor:"#FF0000",
+    borderColor: '#FF0000',
     // width:300
     width: 60,
     height: 60,
-    alignSelf: 'center',
+    // alignSelf: 'center',
   },
-  joinButton:{
+  joinButton: {
     elevation: 4,
     // backgroundColor:'#FF0000',
     borderRadius: 90,
     paddingVertical: 21,
     paddingHorizontal: 22,
-    
+
     // width:300
     width: 50,
     height: 50,
@@ -69,7 +74,7 @@ const globalStyles = StyleSheet.create({
   formTitle: {
     fontSize: 32,
     // color: '#ffffff',
-    marginBottom: 20,
+    marginBottom: 10,
     textTransform: 'uppercase',
   },
   input: {
@@ -122,6 +127,11 @@ const globalStyles = StyleSheet.create({
   errorText: {
     color: '#FF0000',
     marginTop: 0,
+    marginBottom: 2,
+  },
+  indicator: {
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 

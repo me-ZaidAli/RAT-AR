@@ -18,12 +18,13 @@ export default StyleSheet.create({
         justifyContent: 'space-evenly',
     },
     customButtonHolder:{
+        flexDirection:'row',
         width: dimensions.width,
         height: dimensions.height - 100,
         position:'absolute',
         flex:1,
-        alignItems:'center',
-        justifyContent:'flex-end'
+        alignItems:'flex-end',
+        justifyContent:'space-around'
     },
     customButton:{
         position:'relative',
@@ -44,7 +45,7 @@ export default StyleSheet.create({
     },
     fullView: {
         width: dimensions.width,
-        height: dimensions.height - 100,
+        height: dimensions.height  ,
     },
     remoteContainer: {
         width: '100%',

@@ -1,9 +1,10 @@
-import React, {createContext, useMemo} from 'react';
+import React, {createContext, useMemo, useState} from 'react';
 import auth from '@react-native-firebase/auth';
 
 export const AuthContext = createContext();
 
 const AuthContextProvider = (props) => {
+  // const {isLogging, setIsLogging} = useState(false)
   const state = useMemo(
     () => ({
       logIn: (email, password) => {
@@ -15,6 +16,7 @@ const AuthContextProvider = (props) => {
           })
           .catch((error) => {
             console.log(error);
+           
           });
       },
       signOut: () => {

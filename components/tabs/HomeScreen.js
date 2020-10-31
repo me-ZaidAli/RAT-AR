@@ -49,7 +49,7 @@ const HomePage = ({navigation}) => {
         accessoryLeft={() => (
           <TopNavigationAction
             icon={MenuIcon}
-            onPress={navigation.openDrawer()}
+            
             ></TopNavigationAction>
         )}></TopNavigation>
       <Divider />
