@@ -54,7 +54,7 @@ const Video = ({navigation, route}) => {
   }, []);
 
   function getToken() {
-    return axios.get('https://token-generation-server.herokuapp.com/rtcToken');
+    return axios.get(`https://token-generation-server.herokuapp.com/rtcToken?ChannelName=${channelName}`);
   }
 
   const init = async () => {
