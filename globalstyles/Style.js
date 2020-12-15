@@ -1,4 +1,5 @@
 import {Dimensions, StyleSheet} from 'react-native'
+// import { black } from 'react-native-paper/lib/typescript/src/styles/colors'
 
 const dimensions = {
     width: Dimensions.get('window').width,
@@ -51,12 +52,21 @@ export default StyleSheet.create({
         width: '100%',
         height: 150,
         position: 'absolute',
-        top: 5
+        top: 5,
+        // backgroundColor:'#ffffff'
     },
     remote: {
         width: 150,
         height: 150,
-        marginHorizontal: 2.5
+        marginHorizontal: 2.5,
+        
+    },
+    ArContainer:{
+        position:'absolute',
+        top:2,
+        width:'100%',
+        height:510,
+        backgroundColor:'#0093E9'
     },
     noUserText: {
         paddingHorizontal: 10,
