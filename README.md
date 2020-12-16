@@ -29,7 +29,7 @@ To be put in.
 
 ## Installation
 
-To be put in.
+First, follow this environment set-up guide for [React-Native](https://reactnative.dev/docs/environment-setup)
 
 ## API Reference
 
