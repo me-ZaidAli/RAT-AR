@@ -28,8 +28,9 @@ To be put in.
 - <b>Resource sharing</b>: Through this feature, helpers will be able to share technical manuals or web links with users.
 
 ## Installation
+- Clone the project
 
-- First, follow this environment set-up guide for [React-Native](https://reactnative.dev/docs/environment-setup).
+- Follow this environment set-up guide for [React-Native](https://reactnative.dev/docs/environment-setup).
 
 - *Assuming that you have already connected your mobile device to your pc/laptop via a usb cable by following the above guide*
 
