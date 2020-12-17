@@ -34,7 +34,7 @@ To be put in.
 
 - *Assuming that you have already connected your mobile device to your pc/laptop via a usb cable by following the above guide*
 
-- After that, open the powershell, go to the project directory and run the following command to install all the node modules
+- After that, open the powershell terminal (either directly or in a code-editor), go to the project directory and run the following command to install all the node modules
 
 ```bash
 $ npm install
@@ -43,7 +43,7 @@ Start the node server
 ```bash
 $ npm start
 ```
-Open another powershell, run the project using the command
+Open another powershell terminal, run the project using the command
 ```bash
 $ npm run android
 ```
