@@ -31,6 +31,12 @@ To be put in.
 
 First, follow this environment set-up guide for [React-Native](https://reactnative.dev/docs/environment-setup)
 
+After that, open the powershell, go to the project directory and run the following command to install all the node modules
+
+```bash
+$ npm install
+```
+
 ## API Reference
 
 To be put in.
