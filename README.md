@@ -29,9 +29,11 @@ To be put in.
 
 ## Installation
 
-First, follow this environment set-up guide for [React-Native](https://reactnative.dev/docs/environment-setup).
-Connect your phone to your pc via a usb cable.
-After that, open the powershell, go to the project directory and run the following command to install all the node modules
+- First, follow this environment set-up guide for [React-Native](https://reactnative.dev/docs/environment-setup).
+
+- Connect your phone to your pc via a usb cable.
+
+- After that, open the powershell, go to the project directory and run the following command to install all the node modules
 
 ```bash
 $ npm install
