@@ -31,7 +31,7 @@ To be put in.
 
 - First, follow this environment set-up guide for [React-Native](https://reactnative.dev/docs/environment-setup).
 
-- ****Assuming that you have already connected your mobile device to your pc/laptop via a usb cable by following the above guide****
+- *Assuming that you have already connected your mobile device to your pc/laptop via a usb cable by following the above guide*
 
 - After that, open the powershell, go to the project directory and run the following command to install all the node modules
 
