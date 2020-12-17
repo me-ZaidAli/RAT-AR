@@ -56,8 +56,15 @@ To be put in.
 
 ## How to use?
 
-To be put in
+- 
 
 ## Credits
 
-To be put in.
+- [Augmented Reality for remote assistance via WebRTC](https://www.youtube.com/watch?v=11NiyGoKOrk)
+- [Benefits of AR remote assistance](https://www.xenvis.com/the-benefits-of-ar-remote-assistance-software/)
+
+## Inspiration
+
+- <b>Vuforia Chalk</b>
+- <b>Teamviewer Pilot</b>
+- <b>Worklink by Scope AR</b>
