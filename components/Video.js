@@ -1,14 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {
   Layout,
-  Input,
   Button,
   Icon,
   Divider,
   TopNavigation,
-  TopNavigationAction,
   Spinner,
-  Text
+  Text,
 } from '@ui-kitten/components';
 import {
   Platform,
@@ -28,6 +26,8 @@ import requestCameraAndAudioPermission from './Permission';
 import styles from '../globalstyles/Style';
 import globalStyles from '../globalstyles/globalStyles';
 import axios from 'axios';
+import {ViroARSceneNavigator} from '@akadrimer/react-viro';
+import ARSample from './ARSample'
 
 const PhoneOffOutline = (props) => <Icon {...props} name="phone-off"></Icon>;
 const SwitchCameraIcon = (props) => <Icon name="swap" {...props}></Icon>;
@@ -54,7 +54,9 @@ const Video = ({navigation, route}) => {
   }, []);
 
   function getToken() {
-    return axios.get('https://token-generation-server.herokuapp.com/rtcToken');
+    return axios.get(
+      `https://token-generation-server.herokuapp.com/rtcToken?ChannelName=${channelName}`,
+    );
   }
 
   const init = async () => {
@@ -175,6 +177,9 @@ const Video = ({navigation, route}) => {
             accessoryRight={SwitchCameraIcon}></Button>
         </View>
         {renderRemoteVideos()}
+        <View style={styles.ArContainer}>
+          <ViroARSceneNavigator initialScene={{scene: ARSample}} />
+        </View>
       </View>
     ) : null;
   };
@@ -196,22 +201,31 @@ const Video = ({navigation, route}) => {
       <Divider />
       {!joinSucceed ? (
         <Layout style={globalStyles.videoLoadContainer}>
-          <View style={{flex: 1, flexDirection: 'row',alignItems:"center",justifyContent:"space-between",width:230}}>
+          <View
+            style={{
+              flex: 1,
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              width: 230,
+            }}>
             <Spinner size="small" />
-            <Text category="h6" appearance="hint">Waiting for call to initiate</Text>
+            <Text category="h6" appearance="hint">
+              Waiting for call to initiate
+            </Text>
           </View>
         </Layout>
       ) : (
         <View style={styles.max}>
           <View style={styles.max}>
-            <View style={styles.buttonHolder}>
-              {/* <TouchableOpacity onPress={startCall} style={styles.button}>
+            {/* <View style={styles.buttonHolder}> */}
+            {/* <TouchableOpacity onPress={startCall} style={styles.button}>
             <Text style={styles.buttonText}> Start Call </Text>
           </TouchableOpacity> */}
-              {/* <TouchableOpacity onPress={endCall} style={styles.button}>
+            {/* <TouchableOpacity onPress={endCall} style={styles.button}>
             <Text style={styles.buttonText}> End Call </Text>
           </TouchableOpacity> */}
-            </View>
+            {/* </View> */}
 
             {renderVideos()}
           </View>
