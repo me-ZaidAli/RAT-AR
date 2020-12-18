@@ -4,6 +4,10 @@ RATAR is an augmented reality based remote assistance platform. It will change t
 
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors)
 
+- [Zaid Ali](https://github.com/ZaidAli5430)
+- [Ahsan Saleem](https://github.com/AhsanSaleemMemon)
+- [Aqeel Ejaz](https://github.com/aqeel1211)
+
 ## Motivation
 In the times of pandemics such as COVID-19 where social distancing is of utmost importance, companies across the world are trying to adopt new ways of working, keeping in view of social distancing. Thus, our application will help these industries adopt an approach where they could provide assistance regarding their product while
 maintaining social distancing.
