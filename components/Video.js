@@ -48,7 +48,7 @@ const Video = ({navigation, route}) => {
         console.log('requested!');
       });
     }
-    console.log(`Channel name is ${channelName}`);
+    // console.log(`Channel name is ${channelName}`);
 
     init();
   }, []);
@@ -156,32 +156,33 @@ const Video = ({navigation, route}) => {
   };
 
   const renderVideos = () => {
-    return joinSucceed ? (
+    return(
       <View style={styles.fullView}>
-        <RtcLocalView.SurfaceView
+        {/* <RtcLocalView.SurfaceView
           style={styles.max}
           channelId={'123'}
           renderMode={VideoRenderMode.Hidden}
-        />
+        /> */}
+        {/* <View style={styles.ArContainer}> */}
+        <ViroARSceneNavigator initialScene={{scene: ARSample}} />
+        {/* </View> */}
         <View style={styles.customButtonHolder}>
           <Button
             onPress={endCall}
             style={globalStyles.hangUpButton}
             size="large"
             accessoryRight={PhoneOffOutline}></Button>
-          <Button
+          {/* <Button
             onPress={engine.switchCamera}
             size="large"
             // appearance="ghost"
             status="basic"
-            accessoryRight={SwitchCameraIcon}></Button>
+            accessoryRight={SwitchCameraIcon}></Button> */}
         </View>
-        {renderRemoteVideos()}
-        <View style={styles.ArContainer}>
-          <ViroARSceneNavigator initialScene={{scene: ARSample}} />
-        </View>
+        {/* {renderRemoteVideos()} */}
+        
       </View>
-    ) : null;
+    )
   };
 
   return (
@@ -199,7 +200,8 @@ const Video = ({navigation, route}) => {
         // )}
       ></TopNavigation>
       <Divider />
-      {!joinSucceed ? (
+     
+      {/* {!joinSucceed ? (
         <Layout style={globalStyles.videoLoadContainer}>
           <View
             style={{
@@ -215,22 +217,17 @@ const Video = ({navigation, route}) => {
             </Text>
           </View>
         </Layout>
-      ) : (
+      ) : ( */}
         <View style={styles.max}>
           <View style={styles.max}>
-            {/* <View style={styles.buttonHolder}> */}
-            {/* <TouchableOpacity onPress={startCall} style={styles.button}>
-            <Text style={styles.buttonText}> Start Call </Text>
-          </TouchableOpacity> */}
-            {/* <TouchableOpacity onPress={endCall} style={styles.button}>
-            <Text style={styles.buttonText}> End Call </Text>
-          </TouchableOpacity> */}
-            {/* </View> */}
+            {/* <View style={styles.ArContainer}>
+              <ViroARSceneNavigator initialScene={{scene: ARSample}} />
+            </View> */}
 
             {renderVideos()}
           </View>
         </View>
-      )}
+       {/* )} */}
     </SafeAreaView>
   );
 };

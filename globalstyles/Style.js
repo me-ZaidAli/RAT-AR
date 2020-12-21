@@ -65,7 +65,7 @@ export default StyleSheet.create({
         position:'absolute',
         top:2,
         width:'100%',
-        height:510,
+        height:'92%',
         backgroundColor:'#0093E9'
     },
     noUserText: {
