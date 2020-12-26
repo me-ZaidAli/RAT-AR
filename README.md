@@ -1,6 +1,6 @@
 ## RATAR - Remote Assistance through Augmented Reality
 RATAR is an augmented reality based remote assistance platform. It will change the way technicians work on maintenance and repair operations. RATAR platform allows customer care agents or technicians to work remotely, executing common technical tasks and maintenance procedures in real-time. The display of real-time
-3D annotations on environments and objects help teams solve problems efficiently and with no extra relocation costs. For example, a customer can be guided to troubleshoot his internet or set up a security camera.
+3D annotations on environments and objects help teams solve problems efficiently and with no extra relocation costs. For example, a customer can be guided to troubleshoot his internet modem, set up a security camera, or install smart home devices etc.
 
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors)
 
@@ -17,9 +17,19 @@ Furthermore, due to the nature of our app, it can be used for remote training of
 ## Code style
 
 [![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat)](https://github.com/feross/standard)
- 
-## Screenshots
-To be put in.
+
+## Screenshots 
+(The following screenshots are the major ones and part of our FYP-1 only)
+
+### Sign up
+![Sign up](https://i.postimg.cc/zGpDsyHT/1608984956555.jpg)
+### Log in
+![log in](https://i.postimg.cc/2SC89Qyz/1608984956579.jpg)
+### Create/Join Channel
+![Create/Join Channel](https://i.postimg.cc/g0JcmG3Q/1608984956531.jpg)
+
+### Plane Detection during call
+![plane-detection](https://i.postimg.cc/rF5ZJ9NS/Whats-App-Image-2020-12-20-at-10-36-03-PM.jpg)
 
 ## Tech/framework used
 
@@ -27,6 +37,8 @@ To be put in.
 - [React-Native](https://reactnative.dev)
 - [Agora.io](https://www.agora.io/en/)
 - [ViroReact](https://viromedia.com/viroreact)
+- [Firebase](https://firebase.google.com)
+- [Node.js](https://nodejs.org/en/)
 
 ## Features
 - <b>AR 3D annotations</b>: Helpers will be able to draw 3D annotations on his screen that will be rendered to the user’s screen.
@@ -53,14 +65,6 @@ Open another powershell terminal, run the project using the command
 ```bash
 $ npm run android
 ```
-
-## API Reference
-
-To be put in.
-
-## How to use?
-
-- 
 
 ## Credits
 
