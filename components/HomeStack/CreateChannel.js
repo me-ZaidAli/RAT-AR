@@ -18,23 +18,17 @@ import {
   Button,
   Icon,
   Divider,
-  TopNavigation,
-  TopNavigationAction
 } from '@ui-kitten/components';
 import {Directions} from 'react-native-gesture-handler';
 import {View} from 'native-base';
 
+// Loading icons
 const ForwardIcon = (props) => (
   <Icon name="arrow-forward-outline" {...props}></Icon>
 );
 
-const JoinIcon = (props) => <Icon name="link-outline" {...props}></Icon>;
-
 const CreateChannel = (props) => {
-
-
   return (
-    
     <Layout style={globalStyles.homeContainer} level="1">
       <Layout style={globalStyles.homeScreenContainer} level="1">
         <Text
@@ -68,9 +62,11 @@ const CreateChannel = (props) => {
           Join!
         </Text>
 
-        <Formik initialValues={{channelId: ''}} onSubmit={(values) => {
-          props.navigation.navigate('Video',{channelId:values.channelId})
-        }}>
+        <Formik
+          initialValues={{channelId: ''}}
+          onSubmit={(values) => {
+            props.navigation.navigate('Video', {channelId: values.channelId});
+          }}>
           {(props) => (
             <View
               style={{
@@ -92,27 +88,7 @@ const CreateChannel = (props) => {
             </View>
           )}
         </Formik>
-
-        {/* <Input status></Input>
-        <Layout level='3' style={{height:'20%',width:'20%',flex: 1, flexDirection: 'row'}}>
-
-          
-        </Layout> */}
-
-        {/* <Formik
-        initialValues={{email: '', password: ''}}
-        onSubmit={(values) => {
-          
-        }}>
-        {(props) => (
-          
-        )}
-      </Formik> */}
       </Layout>
-      {/* <Layout level="2" style={{flex: 1, flexDirection: 'row', width: '90%'}}>
-        <Input placeholder="Channel Id"></Input>
-        <Button size="tiny">Join</Button>
-      </Layout> */}
     </Layout>
   );
 };

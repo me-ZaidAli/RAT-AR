@@ -15,6 +15,8 @@ import {AuthContext} from './context/AuthContext';
 import {Layout, Text, Input, Button} from '@ui-kitten/components';
 
 const Signup = ({navigation}) => {
+
+  // Fetching signUp method from AuthContext hook
   const {signUp} = useContext(AuthContext);
 
   const confirmPassword = (password, cpassword) => {

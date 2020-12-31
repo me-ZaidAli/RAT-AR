@@ -27,32 +27,33 @@ import styles from '../globalstyles/Style';
 import globalStyles from '../globalstyles/globalStyles';
 import axios from 'axios';
 import {ViroARSceneNavigator} from '@akadrimer/react-viro';
-import ARSample from './ARSample'
+import ArBoxScene from './ArBoxScene';
 
 const PhoneOffOutline = (props) => <Icon {...props} name="phone-off"></Icon>;
 const SwitchCameraIcon = (props) => <Icon name="swap" {...props}></Icon>;
-// const LoadingIndicator = (props) =>;
 
-const Video = ({navigation, route}) => {
+const VideoCall = ({navigation, route}) => {
   let token = '';
   let channelName = !route.params ? '123' : route.params.channelId;
+
+  // Initializing state variables
   const [appId, setAppId] = useState('6fbc95615707434392c85cff827b9d54');
   const [joinSucceed, setJoinSucceed] = useState(false);
   const [peerIds, setPeerIds] = useState([]);
   const [engine, setEngine] = useState('');
 
   useEffect(() => {
+    // For camera and audio permission before video call
     if (Platform.OS === 'android') {
       // Request required permissions from Android
       requestCameraAndAudioPermission().then(() => {
         console.log('requested!');
       });
     }
-    // console.log(`Channel name is ${channelName}`);
-
     init();
   }, []);
 
+  // For fetching usertoken to join channel for video call 
   function getToken() {
     return axios.get(
       `https://token-generation-server.herokuapp.com/rtcToken?ChannelName=${channelName}`,
@@ -61,23 +62,17 @@ const Video = ({navigation, route}) => {
 
   const init = async () => {
     console.log(route);
-
+    
+    // Fetching token
     let response = await getToken();
     console.log(response.data.key);
     token = response.data.key;
 
+    // Initializing RtcEngine
     let engine = await RtcEngine.create(appId);
     await engine.enableVideo();
 
-    // channelObject = await engine.createRtcChannel('123');
-    // console.log(channelObject);
-
-    // channelObject.on('JoinChannelSuccess', (channel, uid, elapsed) => {
-    //   console.log('JoinChannelSuccess', channel, uid, elapsed);
-    //   // Set state variable to true
-    //   setJoinSucceed(true);
-    // });
-
+    // Adding event to our initialized RtcEngine
     engine.addListener('Warning', (warn) => {
       console.log('Warning', warn);
     });
@@ -86,23 +81,17 @@ const Video = ({navigation, route}) => {
       console.log('Error', err);
     });
 
+    // Triggered when remote user joins the channel
     engine.addListener('UserJoined', (uid, elapsed) => {
       console.log('UserJoined', uid, elapsed);
-      // Get current peer IDs
-      // const {peerIds} = this.state
-      // If new user
       if (peerIds.indexOf(uid) === -1) {
         setPeerIds([...peerIds, uid]);
       }
     });
 
+    //Triggered when remote user leaves the call
     engine.addListener('UserOffline', (uid, reason) => {
       console.log('UserOffline', uid, reason);
-      // const {peerIds} = this.state
-      // this.setState({
-      //     // Remove peer ID from state array
-      //     peerIds: peerIds.filter(id => id !== uid)
-      // })
       setPeerIds(peerIds.filter((id) => id !== uid));
     });
 
@@ -112,21 +101,20 @@ const Video = ({navigation, route}) => {
       // Set state variable to true
       setJoinSucceed(true);
     });
+
     setEngine(engine);
     startCall(engine);
   };
 
+  // For initializing call
   const startCall = async (engine) => {
     console.log('token is ' + token);
     const message = await engine.switchCamera();
 
-    // let mediaOptions = new ChannelMediaOptions();
-    // mediaOptions.autoSubscribeAudio = true;
-    // mediaOptions.autoSubscribeVideo = true;
     await engine.joinChannel(token, channelName, null, 0);
-    // await channelObject.joinChannel(token,'123',null,mediaOptions);
   };
-
+  
+  // For ending call
   const endCall = async () => {
     await engine.leaveChannel();
     setPeerIds([]);
@@ -134,6 +122,7 @@ const Video = ({navigation, route}) => {
     navigation.navigate('Home');
   };
 
+ // Method for rendering videos of remote users (users with whome you are on call with) 
   const renderRemoteVideos = () => {
     return (
       <ScrollView
@@ -154,9 +143,11 @@ const Video = ({navigation, route}) => {
       </ScrollView>
     );
   };
-
+  
+  // Method for render local camera view as well as 
+  //for initializing the area for remote videos
   const renderVideos = () => {
-    return(
+    return (
       <View style={styles.fullView}>
         {/* <RtcLocalView.SurfaceView
           style={styles.max}
@@ -164,7 +155,7 @@ const Video = ({navigation, route}) => {
           renderMode={VideoRenderMode.Hidden}
         /> */}
         {/* <View style={styles.ArContainer}> */}
-        <ViroARSceneNavigator initialScene={{scene: ARSample}} />
+        <ViroARSceneNavigator initialScene={{scene: ArBoxScene}} />
         {/* </View> */}
         <View style={styles.customButtonHolder}>
           <Button
@@ -180,9 +171,8 @@ const Video = ({navigation, route}) => {
             accessoryRight={SwitchCameraIcon}></Button> */}
         </View>
         {/* {renderRemoteVideos()} */}
-        
       </View>
-    )
+    );
   };
 
   return (
@@ -200,7 +190,7 @@ const Video = ({navigation, route}) => {
         // )}
       ></TopNavigation>
       <Divider />
-     
+
       {/* {!joinSucceed ? (
         <Layout style={globalStyles.videoLoadContainer}>
           <View
@@ -218,18 +208,18 @@ const Video = ({navigation, route}) => {
           </View>
         </Layout>
       ) : ( */}
+      <View style={styles.max}>
         <View style={styles.max}>
-          <View style={styles.max}>
-            {/* <View style={styles.ArContainer}>
+          {/* <View style={styles.ArContainer}>
               <ViroARSceneNavigator initialScene={{scene: ARSample}} />
             </View> */}
 
-            {renderVideos()}
-          </View>
+          {renderVideos()}
         </View>
-       {/* )} */}
+      </View>
+      {/* )} */}
     </SafeAreaView>
   );
 };
 
-export default Video;
+export default VideoCall;

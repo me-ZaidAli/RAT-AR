@@ -30,10 +30,8 @@ import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs
 
 import Signup from './components/SignupForm';
 import Login from './components/LoginForm';
-// import HomePage from './components/HomePage';
 import MenuDrawer from './components/MenuDrawer';
-import Video from './components/Video';
-
+import Video from './components/VideoCall';
 import HomeScreen from './components/tabs/HomeScreen';
 import Tab2 from './components/tabs/Tab2';
 import Tab3 from './components/tabs/Tab3';
@@ -44,11 +42,12 @@ import globalStyles from './globalstyles/globalStyles';
 import auth from '@react-native-firebase/auth';
 import AuthContextProvider from './components/context/AuthContext';
 
+// Loading icons
 const HomeIcon = (props) => <Icon name="home-outline" {...props}></Icon>;
-
 const PersonIcon = (props) => <Icon name="person-outline" {...props}></Icon>;
 
 const App = () => {
+  //Initializing multiple navigators
   const Stack = createStackNavigator();
   const MenuDrawer = createDrawerNavigator();
   const MateriaTopTabs = createMaterialTopTabNavigator();
@@ -64,6 +63,7 @@ const App = () => {
     if (initializing) setInitializing(false);
   }
 
+  // Configuring drawer before initializing it
   const DrawerContent = ({navigation, state}) => (
     <Drawer
       selectedIndex={new IndexPath(state.index)}
@@ -72,13 +72,8 @@ const App = () => {
       <DrawerItem title="Profile" />
     </Drawer>
   );
-  const createHomeStack = () => (
-    <Stack.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="Home" component={createBottomTabs} />
-      {/* <Stack.Screen name="Login" component={Login} /> */}
-      <Stack.Screen name="Video" component={Video} />
-    </Stack.Navigator>
-  );
+
+  // Initializing drawer
   const createDrawer = () => (
     <MenuDrawer.Navigator
       drawerContent={(props) => <DrawerContent {...props} />}>
@@ -88,6 +83,7 @@ const App = () => {
     </MenuDrawer.Navigator>
   );
 
+  //Configuring BottomNavigationTabs
   const BottomTabBar = ({navigation, state}) => (
     <BottomNavigation
       selectedIndex={state.index}
@@ -96,6 +92,8 @@ const App = () => {
       <BottomNavigationTab title="PROFILE" icon={PersonIcon} />
     </BottomNavigation>
   );
+
+  // Initializing BottomNavigationTabs
   function createBottomTabs() {
     return (
       <bottomTabs.Navigator tabBar={(props) => <BottomTabBar {...props} />}>
@@ -105,7 +103,17 @@ const App = () => {
     );
   }
 
+  // Initializing Homescreen stack
+  const createHomeStack = () => (
+    <Stack.Navigator screenOptions={{headerShown: false}}>
+      <Stack.Screen name="Home" component={createBottomTabs} />
+      {/* <Stack.Screen name="Login" component={Login} /> */}
+      <Stack.Screen name="Video" component={Video} />
+    </Stack.Navigator>
+  );
+
   useEffect(() => {
+    // Maintaining app state
     const subscriber = auth().onAuthStateChanged(onAuthStateChanged);
     console.log(user);
     return subscriber;
@@ -131,23 +139,12 @@ const App = () => {
                 <Stack.Screen name="Signup" component={Signup} />
               </Stack.Navigator>
             ) : (
-              // <Drawer.Navigator>
-              //   <Drawer.Screen
-              //     name="Home"
-              //     children={createHomeStack}></Drawer.Screen>
-              //   <Drawer.Screen name="Screen1" component={Screen1}></Drawer.Screen>
-              //   <Drawer.Screen name="Screen2" component={Screen2}></Drawer.Screen>
-              //   <Drawer.Screen name="Screen3" component={Screen3}></Drawer.Screen>
-              // </Drawer.Navigator>
-              // createHomeStack()
               createDrawer()
             )}
           </NavigationContainer>
         </AuthContextProvider>
       </ApplicationProvider>
     </>
-
-    // <Video></Video>
   );
 };
 

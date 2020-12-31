@@ -1,5 +1,6 @@
 import * as yup from 'yup';
 
+// Initializing validation schema for signup form
 const signupSchema = yup.object({
   email: yup.string().email().required(),
   password: yup.string().required().min(4),

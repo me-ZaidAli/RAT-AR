@@ -20,6 +20,7 @@ import {
   Spinner,
 } from '@ui-kitten/components';
 
+// Loading icons
 const EmailIcon = (props) => <Icon name="email-outline" {...props}></Icon>;
 const PasswordIcon = (props) => <Icon name="lock-outline" {...props}></Icon>;
 const LoadingIndicator = (props) => (
@@ -29,9 +30,9 @@ const LoadingIndicator = (props) => (
 );
 
 const Login = ({navigation}) => {
+  // Fetching logIn method from AuthContext hook
   const {logIn} = useContext(AuthContext);
   const [isLogging, setIsLogging] = useState(false);
-  // const [loginSuccess, setLoginSuccess] = useState(true);
 
   return (
     <Layout style={globalStyles.container}>
@@ -40,18 +41,10 @@ const Login = ({navigation}) => {
         onSubmit={(values) => {
           setIsLogging(true);
           logIn(values.email, values.password);
-
-          // setIsLogging(false);
         }}>
         {(props) => (
           <Layout style={globalStyles.formContainer}>
             <Text style={globalStyles.formTitle}>Login!</Text>
-            {/* <TextInput
-              placeholder="Email"
-              onChangeText={props.handleChange('email')}
-              value={props.values.email}
-              style={globalStyles.input}
-            /> */}
             <Input
               placeholder="Email"
               onChangeText={props.handleChange('email')}
@@ -60,9 +53,6 @@ const Login = ({navigation}) => {
               size="large"
               style={globalStyles.input}
               accessoryLeft={EmailIcon}></Input>
-            {/* <Text style={globalStyles.errorText} >
-              {props.touched.email && props.errors.email}
-            </Text> */}
             <Input
               placeholder="Password"
               secureTextEntry={true}
@@ -73,14 +63,6 @@ const Login = ({navigation}) => {
               style={globalStyles.input}
               accessoryLeft={PasswordIcon}
             />
-            {/* <Text style={globalStyles.errorText}>
-              {props.touched.password && props.errors.password}
-            </Text> */}
-            {/* <TouchableOpacity
-              style={globalStyles.signupButton}
-              onPress={props.handleSubmit}>
-              <Text style={globalStyles.signupButtonText}>Login</Text>
-            </TouchableOpacity> */}
             <Button
               style={globalStyles.signupButton}
               status="primary"
@@ -93,13 +75,6 @@ const Login = ({navigation}) => {
                 <Text style={globalStyles.signupButtonText}>Login</Text>
               )}
             </Button>
-            {/* <TouchableOpacity
-              style={globalStyles.loginButton}
-              onPress={() => {
-                navigation.navigate('Signup');
-              }}>
-              <Text style={globalStyles.loginButtonText}>Signup</Text>
-            </TouchableOpacity> */}
             <Text
               style={{fontSize: 13, alignSelf: 'flex-start'}}
               appearance="hint">
@@ -122,7 +97,5 @@ const Login = ({navigation}) => {
     </Layout>
   );
 };
-
-// const styles = StyleSheet.create({});
 
 export default Login;
