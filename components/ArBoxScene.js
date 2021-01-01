@@ -100,12 +100,12 @@ export default function ArBoxScene(props) {
           setLine([[0, 0, 0]]);
           console.log('plane selected');
         }}>
-        <ViroNode
-          position={[0, -1, 0]}
+        {/* <ViroNode */}
+          {/* position={[0, -1, 0]}
           dragType="FixedToWorld"
-          onTouch={_onTouch}>
-          <ViroBox position={[0, 0, -0.25]} scale={[0.1, 0.1, 0.1]} />  
-        </ViroNode>
+          > */}
+          <ViroBox position={[0, 0, -0.25]} scale={[0.2, 0.2, 0.2]} materials={"grid"}/>  
+        {/* </ViroNode> */}
         {/* <ViroPolyline position={[0,0,-.25]} points={line} thickness={0.1}
         materials={"white"} /> */}
         {/* <ViroPolyline position={[0,0,0]} points={line} thickness={0.1}

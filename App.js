@@ -34,7 +34,7 @@ import MenuDrawer from './components/MenuDrawer';
 import Video from './components/VideoCall';
 import HomeScreen from './components/tabs/HomeScreen';
 import Tab2 from './components/tabs/Tab2';
-import Tab3 from './components/tabs/Tab3';
+
 
 import {ActivityIndicator, View} from 'react-native';
 import globalStyles from './globalstyles/globalStyles';
