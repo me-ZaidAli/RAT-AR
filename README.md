@@ -76,3 +76,12 @@ $ npm run android
 - <b>Vuforia Chalk</b>
 - <b>Teamviewer Pilot</b>
 - <b>Worklink by Scope AR</b>
+
+## References
+- https://github.com/AgoraIO-Community/Agora-RN-Quickstart
+- https://reactnative.dev/docs/getting-started
+- https://docs.viromedia.com/docs
+- https://akveo.github.io/react-native-ui-kitten/docs/
+- https://rnfirebase.io/
+- https://docs.agora.io/en/Video/API%20Reference/react_native/index.html
+- https://reactnavigation.org/docs/getting-started
